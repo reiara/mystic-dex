@@ -1,0 +1,617 @@
+id,route,day,title,time,StoryMode
+1,DAY 1,1,Welcome1,00:03,0
+2,DAY 1,1,Welcome2,02:21,0
+3,DAY 1,1,Zen's complaint,04:35,0
+4,DAY 1,1,Yoosung's complaint,07:00,0
+5,DAY 1,1,Jumin's lonely morning,08:00,0
+6,DAY 1,1,Seven loves cats,10:04,0
+7,DAY 1,1,Seven's Investigation,11:58,0
+8,DAY 1,1,Jaehee's expectation,12:50,0
+9,DAY 1,1,Jumin's curiosity,13:48,0
+10,DAY 1,1,Zen reminisces about the old party,15:00,0
+11,DAY 1,1,Who hates to work?,16:50,0
+12,DAY 1,1,Yoosung's hope for the new party,18:02,0
+13,DAY 1,1,Concerns of two men,18:58,0
+14,DAY 1,1,Discussion about the party,19:40,0
+15,DAY 1,1,Zen's expectation,21:50,0
+16,DAY 1,1,Excited Yoosung,22:30,0
+17,DAY 1,1,Jaehee's favor,23:15,0
+18,Casual Story,2,Jaehee's announcement,00:38,0
+19,Casual Story,2,Zen received fan letters,03:03,0
+20,Casual Story,2,Yoosung's omelette rice,07:00,0
+21,Casual Story,2,Fight over cats,08:05,0
+22,Casual Story,2,Yoosung's thoughts,11:45,0
+23,Casual Story,2,Zen hates cats,12:43,0
+24,Casual Story,2,Concerns from V and Zen,15:00,0
+25,Casual Story,2,Yoosung's doubt,17:23,0
+26,Casual Story,2,Zen with new work,19:02,0
+27,Casual Story,2,Romance novel company,20:05,0
+28,Casual Story,2,Jaehee's support,21:35,0
+29,Casual Story,3,Girlfriend and Zen,00:00,0
+30,Casual Story,3,Unstoppable LOLOL,03:04,0
+31,Casual Story,3,Jumin and Cat and Zen,07:30,0
+32,Casual Story,3,The person that has to be found,10:50,0
+33,Casual Story,3,Handsome Zen,12:15,0
+34,Casual Story,3,The Lady of Bracelets,13:05,0
+35,Casual Story,3,Jaehee's thoughts,15:30,0
+36,Casual Story,3,Zen making a fuss,17:56,0
+37,Casual Story,3,"A slave of money, Seven",19:42,0
+38,Casual Story,3,Jalapeños topping,21:15,0
+39,Casual Story,3,Yoosung is living alone,23:00,0
+40,Casual Story,4,Jaehee worries about Jumin,00:18,0
+41,Casual Story,4,Do not drink coffee,03:24,0
+42,Casual Story,4,Jaehee's position,07:00,0
+43,Casual Story,4,Seven mocks Yoosung,09:05,0
+44,Casual Story,4,Blame,10:00,0
+45,Casual Story,4,I quit LOLOL,12:50,0
+46,Casual Story,4,No girlfriend,15:00,0
+47,Casual Story,4,Found him.,17:04,0
+48,Casual Story,4,Are you really...,19:18,0
+49,Casual Story,4,New RFA party,21:08,0
+50,Casual Story,4,The game that starts again,22:00,0
+51,Casual Story,4,Weird Dream,23:15,1
+52,Casual Story,5,We're machines,01:28,0
+53,Casual Story,5,What?,03:22,0
+54,Casual Story,5,Yoosung's delusion,05:35,1
+55,Casual Story,5,(no title),07:00,0
+56,Deep Story,2,We are having a party again!,00:30,0
+57,Deep Story,2,Expressing emotion,02:11,1
+58,Deep Story,2,Cat business,06:55,0
+59,Deep Story,2,Answer me!,09:22,0
+60,Deep Story,2,Rich people,11:50,0
+61,Deep Story,2,How's my life?,14:12,0
+62,Deep Story,2,Bickering,15:58,0
+63,Deep Story,2,Tsk tsk,18:10,0
+64,Deep Story,2,Be honest!,19:56,0
+65,Deep Story,2,Romance expert,22:00,0
+66,Deep Story,2,Jumin... Are you...,23:22,0
+67,Deep Story,3,Stop playing game...,00:55,0
+68,Deep Story,3,Zorro poster,02:59,0
+69,Deep Story,3,Stayed overnight T_T,07:46,0
+70,Deep Story,3,Love records of RFA,09:58,0
+71,Deep Story,3,Lunch,12:02,0
+72,Deep Story,3,Honey Buddha Chip,13:59,0
+73,Deep Story,3,Their life,15:15,0
+74,Deep Story,3,"Tell me, Seven!",17:00,0
+75,Deep Story,3,"Mission ""Honey Buddha""",18:59,0
+76,Deep Story,3,About the party,20:01,0
+77,Deep Story,3,Something in common,22:14,0
+78,Deep Story,4,Stay healthy!,00:01,1
+79,Deep Story,4,Real master,02:22,0
+80,Deep Story,4,Gossip article,08:45,0
+81,Deep Story,4,Unknown fact,11:45,0
+82,Deep Story,4,Religion,13:10,0
+83,Deep Story,4,Zen's imagination,15:15,0
+84,Deep Story,4,Hacker is dangerous,17:07,0
+85,Deep Story,4,Yoosung's life mission,18:30,0
+86,Deep Story,4,Been to the grape farm,20:02,0
+87,Deep Story,4,Good cat business,21:21,0
+88,Deep Story,4,Party date,23:15,1
+89,Deep Story,5,(Story Mode),00:00,1
+90,Deep Story,5,Danger,01:00,1
+91,Another Story,1,New Face!,00:00,0
+92,Another Story,1,Jaehee's Doubt,02:12,0
+93,Another Story,1,The Open Sea Between 0 and 1,06:30,0
+94,Another Story,1,Cats and Dogs,08:26,0
+95,Another Story,1,Importance of Meals,11:49,0
+96,Another Story,1,Zen's Consideration,14:08,0
+97,Another Story,1,Dear Party Coordinator,16:33,0
+98,Another Story,1,I need healing time,18:17,0
+99,Another Story,1,Subject of Interest,20:02,0
+100,Another Story,1,Richness in Wine,21:34,0
+101,Another Story,1,Intriguing Person,23:25,1
+102,Another Story,2,Expectation and Uneasiness,01:19,1
+103,Another Story,2,Night of Reminiscence,02:44,0
+104,Another Story,2,Unexpected Visit,07:50,1
+105,Another Story,2,The Act of Hacking God,09:37,0
+106,Another Story,2,Lots I Want To Do Together,12:00,1
+107,Another Story,2,V's Decision,13:57,1
+108,Another Story,2,Recommendation of Trust,15:24,1
+109,Another Story,2,The Universe and the Sun,18:26,1
+110,Another Story,2,Party at Saturn?,20:13,0
+111,Another Story,2,Congrats,22:38,0
+112,Another Story,3,Under the Shimmering Moonlight,00:31,1
+113,Another Story,3,Paradox of the Survival of the Fittest,02:46,0
+114,Another Story,3,Take Care of Your Health,07:00,0
+115,Another Story,3,Back in the Days,09:13,0
+116,Another Story,3,My Best Friend,12:22,1
+117,Another Story,3,Small Cute Adorable,14:09,0
+118,Another Story,3,Precious friend,16:32,0
+119,Another Story,3,Explosion of Emotions,18:24,1
+120,Another Story,3,Reason Behind the Curiosity,20:11,1
+121,Another Story,3,Powder of the Coordinator!,21:49,0
+122,Another Story,3,Another Level of Salvation,23:07,1
+123,Another Story,4,I Keep Thinking of You,00:16,0
+124,Another Story,4,What's Wrong?,02:34,1
+125,Another Story,4,All-Nighter,08:15,1
+126,Another Story,4,Understanding and Respect,10:22,0
+127,Another Story,4,I Really Want to See You,12:00,1
+128,Another Story,4,Portrait of the Youthful Days in Campus,14:41,1
+129,Another Story,4,An Afternoon of Anxiety,17:36,1
+130,Another Story,4,Mask Made of Glass,18:42,0
+131,Another Story,4,Zen's Worrisome Looks,20:10,0
+132,Another Story,4,Nice,21:53,1
+133,Another Story,4,What I Want to Say,22:49,1
+134,Yoosung Route,5,The picture of the last party,01:28,0
+135,Yoosung Route,5,Robotic Assistant Kang,03:22,0
+136,Yoosung Route,5,Yoosung in the past,07:35,0
+137,Yoosung Route,5,I like how things are now,09:43,0
+138,Yoosung Route,5,Can I wind a spring?,12:30,0
+139,Yoosung Route,5,Yoosung's concern,13:22,0
+140,Yoosung Route,5,Zen with an injury,15:43,0
+141,Yoosung Route,5,A way of releasing anxiety,18:25,0
+142,Yoosung Route,5,Jaehee worries about Zen,20:11,0
+143,Yoosung Route,5,The people who make games,21:45,0
+144,Yoosung Route,5,After looking at the old photo album...,23:07,0
+145,Yoosung Route,6,Rika's relatives,01:03,0
+146,Yoosung Route,6,Seven's gift,03:33,0
+147,Yoosung Route,6,Kitten,07:05,0
+148,Yoosung Route,6,Who will be raising the kitten?,09:55,0
+149,Yoosung Route,6,Yoosung's major,12:22,0
+150,Yoosung Route,6,707 loves cats,14:30,0
+151,Yoosung Route,6,Kitten and Jumin,17:00,0
+152,Yoosung Route,6,Find the right owner,18:45,0
+153,Yoosung Route,6,Just like Rika,19:50,0
+154,Yoosung Route,6,Rika's shadow,20:58,0
+155,Yoosung Route,6,Rika and [Name],23:30,0
+156,Yoosung Route,7,Magician 707,01:17,0
+157,Yoosung Route,7,Different person,03:21,0
+158,Yoosung Route,7,Quarrel,07:20,0
+159,Yoosung Route,7,"Jaehee, before going to work",09:50,0
+160,Yoosung Route,7,People from old memories,12:02,0
+161,Yoosung Route,7,Drunk Jaehee,14:44,0
+162,Yoosung Route,7,Bad Story Ending 1: I am sure about this,17:00,0
+163,Yoosung Route,7,Bad Relationship Ending 1: The life of a cherryboy,17:00,1
+164,Yoosung Route,7,Advice from Jumin,17:32,0
+165,Yoosung Route,7,Bad Story Ending 1: Do not care about me,18:45,0
+166,Yoosung Route,7,Zen's relief,19:19,0
+167,Yoosung Route,7,Bad Story Ending 1: Got something to tell everyone,19:50,0
+168,Yoosung Route,7,Emergency!,20:55,0
+169,Yoosung Route,7,Bad Story Ending 1: Non-sense!,20:58,1
+170,Yoosung Route,7,The feelings for [name],22:00,0
+171,Yoosung Route,7,Bad Story Ending 1: Have you seen Yoosung?,23:30,1
+172,Yoosung Route,7,Calm Jumin,23:44,0
+173,Yoosung Route,8,Zen and the shadow,02:01,0
+174,Yoosung Route,8,Jumin on vacation,03:42,0
+175,Yoosung Route,8,Did you sleep well?,08:01,0
+176,Yoosung Route,8,The place that Zen lives...,11:43,0
+177,Yoosung Route,8,For safety?,13:22,0
+178,Yoosung Route,8,I can't understand V,15:30,1
+179,Yoosung Route,8,Seven's pressure,17:50,0
+180,Yoosung Route,8,Conflict between Yoosung and V,19:29,1
+181,Yoosung Route,8,I'm shocked!,20:45,1
+182,Yoosung Route,8,Bad Story Ending 2: I will be waiting...,20:45,1
+183,Yoosung Route,8,Current situation,22:10,0
+184,Yoosung Route,8,Bad Story Ending 2: I will be waiting...,22:10,1
+185,Yoosung Route,8,Stalkers again?,23:51,0
+186,Deep Story,5,Danger,1:00 / 1:00 A.M.,0
+187,Yoosung Route,9,Suspicious email,01:10,1
+188,Yoosung Route,9,Two men under one roof,03:02,1
+189,Yoosung Route,9,V's eyes,07:45,1
+190,Yoosung Route,9,Shocking facts,10:41,1
+191,Yoosung Route,9,The results of investigation,14:23,1
+192,Yoosung Route,9,People waiting,18:00,0
+193,Yoosung Route,9,Zen is left alone,19:03,0
+194,Yoosung Route,9,A missing puzzle piece,20:10,0
+195,Yoosung Route,9,I am so sorry,22:45,0
+196,Yoosung Route,10,Jaehee's trust,00:10,1
+197,Yoosung Route,10,Can't sleep,01:50,0
+198,Yoosung Route,10,Wish for the best,03:13,0
+199,Yoosung Route,10,Anxious Zen,06:50,1
+200,Yoosung Route,10,Trust them and be patient,08:59,1
+201,Yoosung Route,10,Waiting to hear from them,12:12,1
+202,Yoosung Route,10,Return,17:30,1
+203,Yoosung Route,10,The purpose of the hacker,18:45,0
+204,Yoosung Route,10,Relieved Zen and Jaehee,20:21,1
+205,Yoosung Route,10,I will see you tomorrow,22:22,1
+206,Yoosung Route,11,At the party hall,08:00,0
+207,Yoosung Route,11,Normal Ending: The Party,12:00,0
+208,Zen Route,5,To be a star,00:30,0
+209,Zen Route,5,Master of marketing,02:45,0
+210,Zen Route,5,Handsome me,06:59,0
+211,Zen Route,5,Value of beauty,08:49,0
+212,Zen Route,5,Got the new role!,12:21,0
+213,Zen Route,5,Echo girl? OMG,14:42,0
+214,Zen Route,5,Jumin's offer,16:56,0
+215,Zen Route,5,Jumin+Cat=NO!,18:17,0
+216,Zen Route,5,I will protect the world,19:50,0
+217,Zen Route,5,Zen vs Jumin,21:12,0
+218,Zen Route,5,I'm the side of cats,23:00,0
+219,Zen Route,6,Injury,01:01,0
+220,Zen Route,6,Please get better,03:13,0
+221,Zen Route,6,"Goodbye, Echo girl's autograph",08:30,0
+222,Zen Route,6,Released Zen,10:13,0
+223,Zen Route,6,"Cheer up, Zen",12:30,0
+224,Zen Route,6,About visiting Zen,14:58,1
+225,Zen Route,6,707's secret!,16:00,0
+226,Zen Route,6,Why doesn't (name) go to Zen's place?,17:49,0
+227,Zen Route,6,Defensive Jaehee,19:07,0
+228,Zen Route,6,What Jumin believes,20:20,0
+229,Zen Route,6,RFA and their families,22:40,0
+230,Zen Route,7,What's up with everyone?,00:10,1
+231,Zen Route,7,A way to feel better,02:49,1
+232,Zen Route,7,I have to let it go...,08:30,1
+233,Zen Route,7,Fears for the future,11:00,0
+234,Zen Route,7,Being a pro,13:37,1
+235,Zen Route,7,About Echo girl,16:16,1
+236,Zen Route,7,Zen's discrimination,18:00,1
+237,Zen Route,7,As a fan,19:40,1
+238,Zen Route,7,Let's invite Mummy,21:12,1
+239,Zen Route,7,Jumin in the farm,22:22,1
+240,Zen Route,7,Unstoppable feelings,23:40,0
+241,Zen Route,8,The power of RFA apps!,01:48,1
+242,Zen Route,8,Zen's new work,03:15,1
+243,Zen Route,8,Words for you two,08:24,1
+244,Zen Route,8,Misplaced Pen,10:36,1
+245,Zen Route,8,Old party,12:51,0
+246,Zen Route,8,Jaehee's online,15:02,1
+247,Zen Route,8,My family said...,16:27,0
+248,Zen Route,8,The meaning of families,18:53,1
+249,Zen Route,8,It's over,20:18,0
+250,Zen Route,8,People talk but...,22:00,0
+251,Zen Route,8,Jumin's advice,23:12,0
+252,Zen Route,9,It is unfair,01:46,0
+253,Zen Route,9,When I first started acting,03:56,1
+254,Zen Route,9,Jaehee's opinion,08:08,1
+255,Zen Route,9,When Zen and Jumin first met,09:37,0
+256,Zen Route,9,Seven's move,11:24,1
+257,Zen Route,9,Don't give up!,13:41,0
+258,Zen Route,9,I will be okay again,16:11,0
+259,Zen Route,9,You are still trusted,18:03,0
+260,Zen Route,9,Suspicious Echo girl,19:52,0
+261,Zen Route,9,Thank you for being here with me,21:25,1
+262,Zen Route,9,Zen's press conference,23:10,1
+263,Zen Route,10,How is the preparation going?,00:43,1
+264,Zen Route,10,Emergency alert;;;,02:00,0
+265,Zen Route,10,The dream...,08:18,0
+266,Zen Route,10,Help me!,10:02,0
+267,Zen Route,10,Jumin's complaint,11:47,1
+268,Zen Route,10,Recovery success! However...,14:25,1
+269,Zen Route,10,"PressureBad Relationship Ending 2 and Bad Story Ending 3 occur if ""Who are you?"" is the only response available in the story mode.",16:51,1
+270,Zen Route,10,Should have been more careful,18:28,1
+271,Zen Route,10,The truth,19:50,1
+272,Zen Route,10,Revealing secret,21:12,1
+273,Zen Route,10,Finally,23:16,1
+274,Zen Route,11,Look forward to the party,08:00,0
+275,Zen Route,11,Normal Ending: The Party,12:00,0
+276,Jaehee Route,5,I cannot control myself,01:22,0
+277,Jaehee Route,5,Lonely Zen,03:13,0
+278,Jaehee Route,5,Tickets to the cherry farm,06:49,0
+279,Jaehee Route,5,Jumin is the boss,08:14,1
+280,Jaehee Route,5,A vicious enterpriser?,11:20,0
+281,Jaehee Route,5,Freelancing is the best,13:20,0
+282,Jaehee Route,5,Zen's respect towards Jaehee,15:55,0
+283,Jaehee Route,5,Yoosung's concern,17:15,0
+284,Jaehee Route,5,Life that pursuits happiness,19:00,0
+285,Jaehee Route,5,Jaehee and love,21:04,0
+286,Jaehee Route,5,Jumin back from the business trip,23:04,0
+287,Jaehee Route,6,Yoosung and the tuition,01:11,0
+288,Jaehee Route,6,Zen's injury,02:48,0
+289,Jaehee Route,6,Jaehee worries about Zen,07:40,0
+290,Jaehee Route,6,About Zen's recovery speed,10:15,0
+291,Jaehee Route,6,New project,12:31,1
+292,Jaehee Route,6,Someone must be chasing us,13:55,0
+293,Jaehee Route,6,Stalker? or imaginary friend?,16:16,1
+294,Jaehee Route,6,Jumin's security guards,18:00,0
+295,Jaehee Route,6,Visiting Zen,19:09,1
+296,Jaehee Route,6,To Zen's place,21:12,1
+297,Jaehee Route,6,Fresh feeling,23:09,0
+298,Jaehee Route,7,My heart is beating!,00:45,0
+299,Jaehee Route,7,Zen's room,02:01,1
+300,Jaehee Route,7,Jaehee and the vacation?,08:15,1
+301,Jaehee Route,7,I need to rest!,10:48,0
+302,Jaehee Route,7,Cat hotel,12:30,0
+303,Jaehee Route,7,NO WAY!,13:46,1
+304,Jaehee Route,7,What's so great about coffee,15:55,1
+305,Jaehee Route,7,Hacker,17:22,0
+306,Jaehee Route,7,New side of Jaehee,19:30,0
+307,Jaehee Route,7,Adding more work,21:26,1
+308,Jaehee Route,7,Deal,23:00,1
+309,Jaehee Route,8,I can do it by myself,01:20,0
+310,Jaehee Route,8,Worried Zen,03:32,1
+311,Jaehee Route,8,Warm supports,06:55,0
+312,Jaehee Route,8,Ridiculous idea,08:00,1
+313,Jaehee Route,8,Relaxing cafe,10:17,0
+314,Jaehee Route,8,I am free!,12:45,0
+315,Jaehee Route,8,Don't work too hard on this,15:02,1
+316,Jaehee Route,8,Possibilities,17:16,1
+317,Jaehee Route,8,Let's support each other,18:53,0
+318,Jaehee Route,8,Zen's gift,20:34,0
+319,Jaehee Route,8,Go Jaehee!,22:57,0
+320,Jaehee Route,9,Hand mill,00:14,0
+321,Jaehee Route,9,Work is done!,02:48,0
+322,Jaehee Route,9,Assistant Kang,08:43,0
+323,Jaehee Route,9,Support and care,11:30,0
+324,Jaehee Route,9,Coffee time,13:39,1
+325,Jaehee Route,9,Premium gas,16:11,1
+326,Jaehee Route,9,Conflict between Jumin and Jaehee,17:20,0
+327,Jaehee Route,9,Treasure,18:38,0
+328,Jaehee Route,9,Fired,20:02,0
+329,Jaehee Route,9,Old memory,21:47,0
+330,Jaehee Route,9,I can't understand,23:11,0
+331,Jaehee Route,10,Sorry and.. thank you,01:32,0
+332,Jaehee Route,10,Jaehee's courage,02:58,0
+333,Jaehee Route,10,Revenge,08:10,1
+334,Jaehee Route,10,Jumin took my babe car,09:20,0
+335,Jaehee Route,10,Determined Yoosung,12:45,0
+336,Jaehee Route,10,Find a path that makes you happy,14:30,0
+337,Jaehee Route,10,Jumin's driving skill,16:22,0
+338,Jaehee Route,10,Jaehee worries about Jumin,17:30,0
+339,Jaehee Route,10,Threat,18:48,0
+340,Jaehee Route,10,Jaehee,20:00,1
+341,Jaehee Route,10,Disappeared hacker,23:18,1
+342,Jaehee Route,11,See you at the party,08:00,0
+343,Jaehee Route,11,Normal Ending: The Party,12:00,0
+344,Jumin Route,5,This should not be happening,00:50,0
+345,Jumin Route,5,What is the purpose of the hacker?,02:36,0
+346,Jumin Route,5,That was a bad sign,08:12,1
+347,Jumin Route,5,About this hacker...,10:30,1
+348,Jumin Route,5,Tragedy of Zen,11:58,0
+349,Jumin Route,5,Yoosung going to the class,13:40,0
+350,Jumin Route,5,I know what chicken means,15:05,1
+351,Jumin Route,5,Did you see a woman?,17:16,0
+352,Jumin Route,5,Marriage should be...,19:00,1
+353,Jumin Route,5,Marriage of convenience,20:55,0
+354,Jumin Route,5,"My dream, the cat wedding...",22:59,0
+355,Jumin Route,6,I do not agree that marriage,00:40,0
+356,Jumin Route,6,The source,02:50,0
+357,Jumin Route,6,Leisurely morning,08:30,1
+358,Jumin Route,6,Is Jumin's company going to be okay?,10:01,0
+359,Jumin Route,6,Stop cat business,12:22,1
+360,Jumin Route,6,Oh my test!,14:48,1
+361,Jumin Route,6,Another shock,16:12,0
+362,Jumin Route,6,Father',18:00,0
+363,Jumin Route,6,Here is not Jumin's diary,19:20,1
+364,Jumin Route,6,Fast act,20:44,0
+365,Jumin Route,6,What do they want?,23:11,0
+366,Jumin Route,7,Same as everyday,01:00,1
+367,Jumin Route,7,I saw a woman,02:03,0
+368,Jumin Route,7,I don't believe him,07:07,1
+369,Jumin Route,7,Shocking news,09:18,1
+370,Jumin Route,7,Unpredictable Jumin,11:20,0
+371,Jumin Route,7,What is going on with him?,14:00,1
+372,Jumin Route,7,"May I have a favor, [name]?",16:30,1
+373,Jumin Route,7,Big news... T_T,18:00,1
+374,Jumin Route,7,Things getting worse,19:30,0
+375,Jumin Route,7,Just two of them at this dark night?,21:58,1
+376,Jumin Route,7,Knock knock,23:23,1
+377,Jumin Route,8,Heaven of gamers,00:59,0
+378,Jumin Route,8,The thing Sarah has been hiding,02:12,1
+379,Jumin Route,8,Please come to work,08:30,1
+380,Jumin Route,8,A bolt from the blue,09:55,0
+381,Jumin Route,8,Find the cat,11:43,1
+382,Jumin Route,8,"Come back home, Elizabeth...",13:15,0
+383,Jumin Route,8,What Jumin realized,15:30,0
+384,Jumin Route,8,"Jumin's changeBad Story Ending 2 occurs if ""Alright, I'll stay here. I know you'll protect me from danger."" is the only response available in the story mode.",17:22,1
+385,Jumin Route,8,Dating in common sense,19:00,0
+386,Jumin Route,8,Staying at the office,21:03,1
+387,Jumin Route,8,I need to see it with my eyes,23:17,1
+388,Jumin Route,9,Where is here T_T,01:09,0
+389,Jumin Route,9,Adverts,02:29,1
+390,Jumin Route,9,Plan,09:43,1
+391,Jumin Route,9,Jaehee's information,10:58,0
+392,Jumin Route,9,Castle in the mountain,13:03,1
+393,Jumin Route,9,Elizabeth 3rd,14:33,1
+394,Jumin Route,9,Were my eyes wrong?,17:20,0
+395,Jumin Route,9,Things we saw,19:04,0
+396,Jumin Route,9,Exhausted Seven,20:37,0
+397,Jumin Route,9,Still...,21:46,1
+398,Jumin Route,9,Yoosung and Elizabeth,23:00,0
+399,Jumin Route,10,If I see Elizabeth 3rd again...,00:44,1
+400,Jumin Route,10,Cat out-of-control,02:13,0
+401,Jumin Route,10,Unstable Seven,08:19,1
+402,Jumin Route,10,Unsolved mystery,10:47,0
+403,Jumin Route,10,Return VS Safety,13:40,1
+404,Jumin Route,10,Errorrrr in my head,15:26,1
+405,Jumin Route,10,Why do people get married?,17:40,1
+406,Jumin Route,10,I met V!,18:45,0
+407,Jumin Route,10,"Why...?Bad Story Ending 3 and Bad Relationship Ending 2 occur if ""I want to go home now..."" is the only response available in the story mode.",19:58,1
+408,Jumin Route,10,Return to the right place,22:38,1
+409,Jumin Route,10,After you left...,23:50,1
+410,Jumin Route,11,It is the place,08:00,0
+411,Jumin Route,11,Normal Ending: The Party,12:00,0
+412,707 Route,5,Strange alarm,00:18,1
+413,707 Route,5,Messenger bug!,01:48,0
+414,707 Route,5,What you two have in common,08:40,0
+415,707 Route,5,2.35 seconds,10:20,0
+416,707 Route,5,Men with black suits,12:30,0
+417,707 Route,5,Distract your attention,14:21,0
+418,707 Route,5,Jumin....!!,16:41,0
+419,707 Route,5,It's been bugging me,18:11,0
+420,707 Route,5,Seven's true feelings,19:50,0
+421,707 Route,5,"Bus driver, Yoosung",21:20,0
+422,707 Route,5,Perhaps my head is broken,23:47,1
+423,707 Route,6,Mysterious email,01:33,0
+424,707 Route,6,I got it too!?,03:17,0
+425,707 Route,6,I'm recovered!,08:35,1
+426,707 Route,6,Spotlighted life isn't bad at all,10:22,0
+427,707 Route,6,Jaehee enjoying freedom,13:01,0
+428,707 Route,6,JUMIN!!!!!T_T,14:39,0
+429,707 Route,6,The sender of the email,16:04,1
+430,707 Route,6,Unexpected fact,17:55,0
+431,707 Route,6,Family reunion,19:19,0
+432,707 Route,6,It was for Yoosung,21:00,1
+433,707 Route,6,Actually I...,22:59,1
+434,707 Route,7,Seven is depressed...?,01:10,0
+435,707 Route,7,Tripter bot,02:30,0
+436,707 Route,7,Sentimental morning,09:32,0
+437,707 Route,7,We are moving!,10:40,1
+438,707 Route,7,New business idea,12:27,1
+439,707 Route,7,Do not move,13:36,0
+440,707 Route,7,Unbelievable!,14:58,1
+441,707 Route,7,What is the special security system?,16:12,1
+442,707 Route,7,What Yoosung and Jumin think,17:06,1
+443,707 Route,7,The system is back on,20:58,1
+444,707 Route,7,The only hope,22:24,0
+445,707 Route,8,What is V doing?,01:05,0
+446,707 Route,8,Jumin's suggestion,03:12,0
+447,707 Route,8,Good time with mom,08:00,1
+448,707 Route,8,The truth of the special security system,09:55,1
+449,707 Route,8,I can't believe Rika did that,11:48,1
+450,707 Route,8,Two different reaction,13:27,1
+451,707 Route,8,What I can do,15:04,0
+452,707 Route,8,The secret that Seven has been keeping,17:31,1
+453,707 Route,8,Inefficient way,19:29,0
+454,707 Route,8,I miss my mom,21:13,1
+455,707 Route,8,Is that what you have to say?,23:30,1
+456,707 Route,9,Shaking Faith,01:12,1
+457,707 Route,9,Confession,02:46,1
+458,707 Route,9,Brother of Seven?,07:55,0
+459,707 Route,9,"It has nothing to do with youBad Story Ending 2 occurs if ""(Makes Seven fall down.)"" is the only response available in the the story mode.",10:01,1
+460,707 Route,9,He did not mean that,11:33,0
+461,707 Route,9,Keep it cool,13:28,0
+462,707 Route,9,Jaehee's consolation,15:27,1
+463,707 Route,9,"Sorry, Yoosung",17:48,0
+464,707 Route,9,What a relief,19:19,1
+465,707 Route,9,Mint Eye and Rika,21:16,0
+466,707 Route,9,I can't sleep,23:34,1
+467,707 Route,10,Everything I believed...,01:45,0
+468,707 Route,10,Betrayal,04:14,1
+469,707 Route,10,We miss you guys,08:18,0
+470,707 Route,10,I can't get over this,10:22,1
+471,707 Route,10,"Please rememberBad Relationship Ending 2 occurs if there is no option to respond in the second part of the story mode. Bad Story Ending 3 occurs if ""I think this is a bit strange."" is the only response available in the second part of the story mode.",12:07,1
+472,707 Route,10,Calm down,13:41,1
+473,707 Route,10,We are on our way,15:28,1
+474,707 Route,10,Don't worry about the party,17:53,1
+475,707 Route,10,Goodbye greetings,20:11,1
+476,707 Route,10,Disappointment,21:34,0
+477,707 Route,10,Our plan,23:41,1
+478,707 Route,11,Make a place for them to come back,08:00,0
+479,707 Route,11,Normal Ending: The Party,12:00,0
+480,V Route,5,Truth Revealed,00:03,1
+481,V Route,5,Data Filled with Riddles,02:00,1
+482,V Route,5,Trust,07:30,1
+483,V Route,5,V's Insecurity,10:52,1
+484,V Route,5,Lies and Two People,12:47,0
+485,V Route,5,Ill Will and Hypocrite,15:11,1
+486,V Route,5,Seven's Plea,17:59,1
+487,V Route,5,Zen's View,19:36,1
+488,V Route,5,How We Take in Sadness,21:00,1
+489,V Route,5,Secrets Revealed,22:22,1
+490,V Route,5,Finishing Up On a Stormy Day,23:48,1
+491,V Route,6,707 Cyber News,01:17,0
+492,V Route,6,V's Concern,02:43,1
+493,V Route,6,Changes Jumin Sees,07:55,0
+494,V Route,6,Don't Want to be Hated,10:24,0
+495,V Route,6,Need Some Fresh Air,12:33,1
+496,V Route,6,Passion Red,14:42,1
+497,V Route,6,Yoosung's Heaven,16:19,1
+498,V Route,6,Heading Towards 2020,18:23,1
+499,V Route,6,Doubtful Family,20:00,1
+500,V Route,6,His Idea of Family,22:02,1
+501,V Route,6,What Happened to V!?!,23:11,1
+502,V Route,7,Shocking Truth,01:20,0
+503,V Route,7,Jumin Helplessness and...,02:32,1
+504,V Route,7,C&amp;R Intelligence Unit,06:55,0
+505,V Route,7,Staying Calm,08:46,1
+506,V Route,7,Provoke,11:51,1
+507,V Route,7,One's Own Reasons,13:16,1
+508,V Route,7,"Miss You, I Feel Lonely",15:38,1
+509,V Route,7,His Heart,17:45,0
+510,V Route,7,How to Cope with Risks,19:24,1
+511,V Route,7,Coming This Way!,21:39,1
+512,V Route,7,Before Charging In!,23:11,1
+513,V Route,8,Seven's Status Report,00:44,1
+514,V Route,8,Emergency in RFA,01:59,1
+515,V Route,8,Suspicious Chat Room,07:13,0
+516,V Route,8,Conciliation Towards Seven,09:27,1
+517,V Route,8,How Did We End Up Like This?,11:00,1
+518,V Route,8,The Demon You Created,13:07,0
+519,V Route,8,I'm Worried of You,15:21,0
+520,V Route,8,It's All My Fault,17:32,1
+521,V Route,8,Failure,19:02,0
+522,V Route,8,Don't Want to Be Abandoned,20:21,0
+523,V Route,8,Opposition and Debacle,22:00,1
+524,V Route,8,Pass the Baton,23:16,1
+525,V Route,9,Seduction of the Moon,00:56,1
+526,V Route,9,I Can Make You Have More Fun,02:43,1
+527,V Route,9,Stop It,06:21,1
+528,V Route,9,Third Person Perspective,09:04,1
+529,V Route,9,Rika's Feelings,12:07,1
+530,V Route,9,Reason Trying to Stop Her,14:11,1
+531,V Route,9,You Change Me,16:39,1
+532,V Route,9,Seven's Persuasion,18:35,1
+533,V Route,9,Winner Seven!!!,20:12,0
+534,V Route,9,I Missed You All,21:49,1
+535,V Route,9,V Has Been Stabbed!,23:24,1
+536,V Route,10,I Want to Talk to You,00:46,1
+537,V Route,10,See You Soon,02:32,1
+538,V Route,10,Triangle?,06:21,1
+539,V Route,10,Her Thoughts,08:38,1
+540,V Route,10,Zen Worrying Over Yoosung,11:51,0
+541,V Route,10,Yoosung's True Feelings,14:05,1
+542,V Route,10,Tattered,16:12,1
+543,V Route,10,I Want You to Be Happy,18:00,0
+544,V Route,10,Save Me,19:49,0
+545,V Route,10,My Defeat,21:53,1
+546,V Route,10,Goodbye,23:59,1
+547,V Route,11,The Ruins,08:00,0
+548,V Route,11,Normal Ending: The Party,12:00,0
+549,Ray Route,5,Building of Dreams,00:21,1
+550,Ray Route,5,Poem of Dawn,02:44,0
+551,Ray Route,5,Regrets,06:03,0
+552,Ray Route,5,Crisp Crisp,09:12,0
+553,Ray Route,5,Unforeseeable Life,12:21,1
+554,Ray Route,5,What's Wrong?,14:37,1
+555,Ray Route,5,Is It True!?,16:13,0
+556,Ray Route,5,"Seven, Finally?",17:45,1
+557,Ray Route,5,Small Coincidence,19:23,1
+558,Ray Route,5,Importance of Patience,21:13,0
+559,Ray Route,5,Congratulated Workaholic,23:09,0
+560,Ray Route,6,Swamp of Emptiness,00:55,1
+561,Ray Route,6,If I was stronger,03:17,0
+562,Ray Route,6,Busy on a fine day,07:40,1
+563,Ray Route,6,Stabilization of Body &amp; Soul,10:23,0
+564,Ray Route,6,Evaluation,13:10,1
+565,Ray Route,6,Always New,14:50,1
+566,Ray Route,6,Daffodil,16:37,0
+567,Ray Route,6,Evil Within Me,18:52,0
+568,Ray Route,6,Suddenly Afraid,20:49,1
+569,Ray Route,6,Need Dark Energy!,21:21,1
+570,Ray Route,6,At the top of the work pile,23:19,1
+571,Ray Route,7,To become the child of darkness,00:58,1
+572,Ray Route,7,At This Night,03:01,0
+573,Ray Route,7,Mr. Han,06:17,1
+574,Ray Route,7,Continuously Thinking,08:43,1
+575,Ray Route,7,Cooperation,12:03,0
+576,Ray Route,7,Art of Efficiency,14:44,0
+577,Ray Route,7,Power Save Mode Today,16:27,0
+578,Ray Route,7,The Roots of Pathetic,18:31,1
+579,Ray Route,7,Window of Truth,20:06,1
+580,Ray Route,7,My True Identity Is,21:43,0
+581,Ray Route,7,Strange,23:59,1
+582,Ray Route,8,Rapid Contact,01:37,1
+583,Ray Route,8,What Should I Do With You?,03:46,1
+584,Ray Route,8,In My Opinion,07:21,0
+585,Ray Route,8,FINALLY!,09:03,1
+586,Ray Route,8,I Really Want to Know!,11:16,1
+587,Ray Route,8,Very Shocking,13:58,1
+588,Ray Route,8,V's Decision,16:04,1
+589,Ray Route,8,Sorry. This is all my fault.,18:31,0
+590,Ray Route,8,Concerned,20:48,0
+591,Ray Route,8,My Treasure,22:14,1
+592,Ray Route,8,Survival of the Fittest,23:39,1
+593,Ray Route,9,Don't you want to try this?,01:29,1
+594,Ray Route,9,What have you done to me?,03:37,0
+595,Ray Route,9,Self-inflicted,06:18,1
+596,Ray Route,9,Now Alone,09:11,1
+597,Ray Route,9,Don't Need You Anymore,12:16,1
+598,Ray Route,9,How Does It Feel?,14:31,1
+599,Ray Route,9,Get Right Into It!,16:56,1
+600,Ray Route,9,It's not too late,17:39,1
+601,Ray Route,9,Empty Shell,19:47,0
+602,Ray Route,9,An Okay Suggestion,21:31,1
+603,Ray Route,9,Are You Okay?,23:13,1
+604,Ray Route,10,Want to Think Positively,01:46,0
+605,Ray Route,10,Thought it was a joke,03:18,1
+606,Ray Route,10,What happened last night,06:21,1
+607,Ray Route,10,I'll Tell Everything,08:36,0
+608,Ray Route,10,Best Present,11:49,1
+609,Ray Route,10,Unexplainable Situation,13:56,0
+610,Ray Route,10,Return of Jumin,16:13,1
+611,Ray Route,10,Please Tell,18:37,1
+612,Ray Route,10,Contact,20:22,1
+613,Ray Route,10,Unfolding Clues,21:39,1
+614,Ray Route,10,Only One Way,23:48,1
+615,Ray Route,11,Stand-by,08:00,0
+616,Ray Route,11,Normal Ending: The Party,12:00,0

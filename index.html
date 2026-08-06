@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MysticDex - Mystic Messenger Companion App</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Mobile Container -->
+    <div class="app-container">
+        
+        <!-- Glassmorphism Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="logo-icon">M</div>
+                <h1 class="app-title">MysticDex</h1>
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle-btn" aria-label="Toggle dark mode" id="theme-toggle">
+                <!-- Sun / Moon SVG dynamically loaded or defaults to Sun -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Main Dynamic Content Area -->
+        <main class="app-content">
+
+            <!-- TAB 1: HOME -->
+            <section id="tab-home" class="tab-content active">
+                <!-- Welcome Card -->
+                <div class="welcome-card">
+                    <h2 class="welcome-title">Welcome to MysticDex!</h2>
+                    <p class="welcome-subtitle">Your immersive mobile companion for <em>Mystic Messenger</em>. Plan routes, simulator chats, and invite guests easily.</p>
+                </div>
+
+                <!-- Navigation Quick Actions -->
+                <h3 class="section-title">
+                    <svg style="width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 2;" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+                    </svg>
+                    Quick Modules
+                </h3>
+                <div class="features-grid">
+                    <button class="feature-card walkthrough-card">
+                        <div class="feature-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 20px; height: 20px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                        </div>
+                        <h4 class="feature-card-title">Walkthroughs</h4>
+                        <p class="feature-card-desc">Interactive chat simulators with optimal choice highlights.</p>
+                    </button>
+
+                    <button class="feature-card email-card">
+                        <div class="feature-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 20px; height: 20px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="feature-card-title">Email Guides</h4>
+                        <p class="feature-card-desc">Correct answers to secure party attendees successfully.</p>
+                    </button>
+                </div>
+
+                <!-- RFA Members Section -->
+                <h3 class="section-title">
+                    <svg style="width: 18px; height: 18px; stroke: var(--accent-pink); fill: none; stroke-width: 2;" viewBox="0 0 24 24">
+                        <path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round"/>
+                    </svg>
+                    RFA Members
+                </h3>
+                
+                <!-- Quick Filter list on Home Screen -->
+                <div class="character-list" id="char-chips-list">
+                    <!-- Loaded dynamically via jQuery -->
+                </div>
+                
+                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+                    Select a member to filter their specific walkthrough chatroom schedules.
+                </p>
+            </section>
+
+            <!-- TAB 2: WALKTHROUGH -->
+            <section id="tab-walkthrough" class="tab-content">
+                <!-- Sticky Header for Search & Route Filters -->
+                <div class="walkthrough-sticky-header">
+                    <!-- Search Bar -->
+                    <div class="search-wrapper" style="margin-bottom: 0;">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" class="search-input" id="search-walkthrough" placeholder="Search walkthrough chatrooms...">
+                    </div>
+                    
+                    <!-- Route Filter Chips list -->
+                    <div class="route-list-container">
+                        <div class="route-list" id="route-chips-list">
+                            <!-- Loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Walkthrough Content List -->
+                <div id="walkthroughs-list">
+                    <!-- Rendered dynamically -->
+                </div>
+            </section>
+
+            <!-- TAB 3: EMAILS -->
+            <section id="tab-emails" class="tab-content">
+                <!-- Search Bar -->
+                <div class="search-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" class="search-input" id="search-emails" placeholder="Search email guest or answer keys...">
+                </div>
+
+                <!-- Emails Content List -->
+                <div id="emails-list" class="email-list">
+                    <!-- Rendered dynamically -->
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sticky Bottom Navigation Bar -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="home" aria-label="Navigate to Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-tab="walkthrough" aria-label="Navigate to Walkthrough">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <span>Walkthrough</span>
+            </button>
+            <button class="nav-item" data-tab="emails" aria-label="Navigate to Email Guide">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Emails</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- jQuery library CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- SQL.js SQLite WASM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <!-- Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
