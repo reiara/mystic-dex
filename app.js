@@ -396,37 +396,44 @@ $(document).ready(function() {
 
         let sql = `
             SELECT 
-                e.id, 
+                e.email_id, 
                 e.sender, 
-                e.answer1, 
-                e.answer2, 
-                e.answer3,
+                e.answer_1, 
+                e.answer_2, 
+                e.answer_3,
                 c.route AS chatroom_route,
                 c.day AS chatroom_day,
                 c.title AS chatroom_title,
                 c.time AS chatroom_time
             FROM emails e
-            LEFT JOIN chatrooms c ON e.chatroom_id = c.id
+            LEFT JOIN email_chatroom ec ON e.email_id = ec.email_id
+            LEFT JOIN chatrooms c ON ec.chatroom_id = c.id
         `;
         let params = {};
 
         if (searchQuery) {
             sql += `
-                WHERE e.sender LIKE :search 
-                OR e.answer1 LIKE :search 
-                OR e.answer2 LIKE :search 
-                OR e.answer3 LIKE :search
-                OR chatroom_title LIKE :search
-                OR chatroom_route LIKE :search
+                WHERE e.email_id IN (
+                    SELECT DISTINCT e2.email_id
+                    FROM emails e2
+                    LEFT JOIN email_chatroom ec2 ON e2.email_id = ec2.email_id
+                    LEFT JOIN chatrooms c2 ON ec2.chatroom_id = c2.id
+                    WHERE e2.sender LIKE :search 
+                       OR e2.answer_1 LIKE :search 
+                       OR e2.answer_2 LIKE :search 
+                       OR e2.answer_3 LIKE :search
+                       OR c2.title LIKE :search
+                       OR c2.route LIKE :search
+                )
             `;
             params[':search'] = `%${searchQuery}%`;
         }
 
         sql += ` ORDER BY e.sender ASC;`;
 
-        const emails = queryDB(sql, params);
+        const rows = queryDB(sql, params);
 
-        if (emails.length === 0) {
+        if (rows.length === 0) {
             $list.append(`
                 <div style="text-align: center; color: var(--text-muted); padding: 40px 0;">
                     No email guides found matching criteria.
@@ -435,10 +442,56 @@ $(document).ready(function() {
             return;
         }
 
+        // Group rows by email_id to handle multiple chatrooms
+        const emailMap = {};
+        rows.forEach(row => {
+            if (!emailMap[row.email_id]) {
+                emailMap[row.email_id] = {
+                    email_id: row.email_id,
+                    sender: row.sender,
+                    answer_1: row.answer_1,
+                    answer_2: row.answer_2,
+                    answer_3: row.answer_3,
+                    chatrooms: []
+                };
+            }
+            if (row.chatroom_route) {
+                // Check if this chatroom is already added to avoid duplicates (if any)
+                const isDuplicate = emailMap[row.email_id].chatrooms.some(
+                    r => r.route === row.chatroom_route && 
+                         r.day === row.chatroom_day && 
+                         r.title === row.chatroom_title && 
+                         r.time === row.chatroom_time
+                );
+                if (!isDuplicate) {
+                    emailMap[row.email_id].chatrooms.push({
+                        route: row.chatroom_route,
+                        day: row.chatroom_day,
+                        title: row.chatroom_title,
+                        time: row.chatroom_time
+                    });
+                }
+            }
+        });
+
+        const emails = Object.values(emailMap);
+        // Sort by sender alphabetically
+        emails.sort((a, b) => a.sender.localeCompare(b.sender));
+
         emails.forEach(email => {
-            const triggerLocation = email.chatroom_route 
-                ? `${email.chatroom_route} - Day ${email.chatroom_day} at ${email.chatroom_time} (${email.chatroom_title})`
-                : 'Unknown / Special Condition';
+            let locationsHTML = '';
+            if (email.chatrooms.length === 0) {
+                locationsHTML = `<span>Unknown / Special Condition</span>`;
+            } else if (email.chatrooms.length === 1) {
+                const room = email.chatrooms[0];
+                locationsHTML = `<span>${room.route} - Day ${room.day} at ${room.time} (${room.title})</span>`;
+            } else {
+                locationsHTML = `<ul style="margin: 6px 0 0 12px; padding-left: 12px; list-style-type: disc; display: flex; flex-direction: column; gap: 4px;">`;
+                email.chatrooms.forEach(room => {
+                    locationsHTML += `<li>${room.route} - Day ${room.day} at ${room.time} (${room.title})</li>`;
+                });
+                locationsHTML += `</ul>`;
+            }
 
             $list.append(`
                 <div class="email-card-item">
@@ -449,22 +502,25 @@ $(document).ready(function() {
                     </div>
                     
                     <div class="email-location" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500;">
-                        <span class="text-pink" style="font-weight: 600;">Found in:</span> ${triggerLocation}
+                        <span style="font-weight: 600; color: var(--accent-pink);">Found in:</span> ${locationsHTML}
                     </div>
                     
                     <div class="email-answers">
+                        ${email.answer_1 && email.answer_1.trim() ? `
                         <div class="email-answer-step">
                             <span class="step-num">#1</span>
-                            <span>${email.answer1}</span>
-                        </div>
+                            <span>${email.answer_1}</span>
+                        </div>` : ''}
+                        ${email.answer_2 && email.answer_2.trim() ? `
                         <div class="email-answer-step">
                             <span class="step-num">#2</span>
-                            <span>${email.answer2}</span>
-                        </div>
+                            <span>${email.answer_2}</span>
+                        </div>` : ''}
+                        ${email.answer_3 && email.answer_3.trim() ? `
                         <div class="email-answer-step">
                             <span class="step-num">#3</span>
-                            <span>${email.answer3}</span>
-                        </div>
+                            <span>${email.answer_3}</span>
+                        </div>` : ''}
                     </div>
                 </div>
             `);
