@@ -4,6 +4,12 @@ $(document).ready(function() {
     let db = null;
     let activeCharacterFilter = 'all';
     let activeRouteFilter = null;
+    let acceptedEmailIds = [];
+    try {
+        acceptedEmailIds = JSON.parse(localStorage.getItem('mysticdex_accepted_emails') || '[]');
+    } catch (e) {
+        console.error("Failed to load accepted emails:", e);
+    }
 
     // --- HELPER FUNCTION FOR SQL.JS ---
     // Executes a query with optional parameters and returns an array of objects
@@ -50,6 +56,7 @@ $(document).ready(function() {
                 renderRouteChips();
                 renderWalkthroughs();
                 renderEmails();
+                renderTracker();
             })
             .catch(error => {
                 console.error("SQLite initialization error:", error);
@@ -479,6 +486,10 @@ $(document).ready(function() {
         emails.sort((a, b) => a.sender.localeCompare(b.sender));
 
         emails.forEach(email => {
+            const isAccepted = acceptedEmailIds.includes(email.email_id);
+            const acceptBtnText = isAccepted ? '✓ Accepted' : 'Accept';
+            const acceptBtnClass = isAccepted ? 'accept-btn active' : 'accept-btn';
+
             let locationsHTML = '';
             if (email.chatrooms.length === 0) {
                 locationsHTML = `<span>Unknown / Special Condition</span>`;
@@ -499,6 +510,9 @@ $(document).ready(function() {
                         <div class="email-sender">
                             <span>${email.sender}</span>
                         </div>
+                        <button class="${acceptBtnClass}" data-email-id="${email.email_id}">
+                            ${acceptBtnText}
+                        </button>
                     </div>
                     
                     <div class="email-location" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500;">
@@ -576,6 +590,172 @@ $(document).ready(function() {
     // Email input search box handler
     $('#search-emails').on('input', function() {
         renderEmails($(this).val());
+    });
+
+    // Render tracker function
+    function renderTracker() {
+        const $list = $('#tracker-list');
+        $list.empty();
+
+        if (acceptedEmailIds.length === 0) {
+            $list.append(`
+                <div class="tracker-empty-state" style="text-align: center; color: var(--text-muted); border: 1px dashed var(--border); padding: 24px; border-radius: var(--radius-lg); font-size: 0.85rem; background-color: var(--card-hover-bg); margin-top: 4px;">
+                    No active email guides tracked.
+                    <div style="font-size: 0.75rem; margin-top: 6px; color: var(--text-muted); opacity: 0.8;">Click "Accept" on any email in the Emails tab to keep track of it here.</div>
+                </div>
+            `);
+            return;
+        }
+
+        // Query database for details of accepted emails
+        const sql = `
+            SELECT 
+                e.email_id, 
+                e.sender, 
+                e.answer_1, 
+                e.answer_2, 
+                e.answer_3,
+                c.route AS chatroom_route,
+                c.day AS chatroom_day,
+                c.title AS chatroom_title,
+                c.time AS chatroom_time
+            FROM emails e
+            LEFT JOIN email_chatroom ec ON e.email_id = ec.email_id
+            LEFT JOIN chatrooms c ON ec.chatroom_id = c.id
+            WHERE e.email_id IN (${acceptedEmailIds.join(',')})
+        `;
+
+        const rows = queryDB(sql);
+
+        const emailMap = {};
+        rows.forEach(row => {
+            if (!emailMap[row.email_id]) {
+                emailMap[row.email_id] = {
+                    email_id: row.email_id,
+                    sender: row.sender,
+                    answer_1: row.answer_1,
+                    answer_2: row.answer_2,
+                    answer_3: row.answer_3,
+                    chatrooms: []
+                };
+            }
+            if (row.chatroom_route) {
+                const isDuplicate = emailMap[row.email_id].chatrooms.some(
+                    r => r.route === row.chatroom_route && 
+                         r.day === row.chatroom_day && 
+                         r.title === row.chatroom_title && 
+                         r.time === row.chatroom_time
+                );
+                if (!isDuplicate) {
+                    emailMap[row.email_id].chatrooms.push({
+                        route: row.chatroom_route,
+                        day: row.chatroom_day,
+                        title: row.chatroom_title,
+                        time: row.chatroom_time
+                    });
+                }
+            }
+        });
+
+        const trackerEmails = Object.values(emailMap);
+        // Sort tracker list by sender alphabetically
+        trackerEmails.sort((a, b) => a.sender.localeCompare(b.sender));
+
+        trackerEmails.forEach(email => {
+            let locationsHTML = '';
+            if (email.chatrooms.length === 0) {
+                locationsHTML = `<span>Unknown / Special Condition</span>`;
+            } else if (email.chatrooms.length === 1) {
+                const room = email.chatrooms[0];
+                locationsHTML = `<span>${room.route} - Day ${room.day} at ${room.time}</span>`;
+            } else {
+                locationsHTML = `<ul style="margin: 4px 0 0 12px; padding-left: 12px; list-style-type: disc; display: flex; flex-direction: column; gap: 2px;">`;
+                email.chatrooms.forEach(room => {
+                    locationsHTML += `<li>${room.route} - Day ${room.day} at ${room.time}</li>`;
+                });
+                locationsHTML += `</ul>`;
+            }
+
+            $list.append(`
+                <div class="email-card-item tracker-card-item" data-email-id="${email.email_id}">
+                    <div class="email-header-row" style="margin-bottom: 6px;">
+                        <div class="email-sender">
+                            <span>${email.sender}</span>
+                        </div>
+                        <button class="remove-tracker-btn" data-email-id="${email.email_id}" title="Remove from Tracker" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='var(--accent-pink)'" onmouseout="this.style.color='var(--text-muted)'">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 16px; height: 16px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="email-location" style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px;">
+                        <span style="font-weight: 600; color: var(--accent-pink);">Found in:</span> ${locationsHTML}
+                    </div>
+                    
+                    <div class="email-answers" style="padding: 8px; gap: 4px;">
+                        ${email.answer_1 && email.answer_1.trim() ? `
+                        <div class="email-answer-step" style="font-size: 0.75rem;">
+                            <span class="step-num">#1</span>
+                            <span>${email.answer_1}</span>
+                        </div>` : ''}
+                        ${email.answer_2 && email.answer_2.trim() ? `
+                        <div class="email-answer-step" style="font-size: 0.75rem;">
+                            <span class="step-num">#2</span>
+                            <span>${email.answer_2}</span>
+                        </div>` : ''}
+                        ${email.answer_3 && email.answer_3.trim() ? `
+                        <div class="email-answer-step" style="font-size: 0.75rem;">
+                            <span class="step-num">#3</span>
+                            <span>${email.answer_3}</span>
+                        </div>` : ''}
+                    </div>
+                </div>
+            `);
+        });
+    }
+
+    // Toggle Accept status on button click
+    $(document).on('click', '.accept-btn', function(e) {
+        e.stopPropagation();
+        const emailId = parseInt($(this).data('email-id'), 10);
+        const idx = acceptedEmailIds.indexOf(emailId);
+        if (idx === -1) {
+            acceptedEmailIds.push(emailId);
+        } else {
+            acceptedEmailIds.splice(idx, 1);
+        }
+        localStorage.setItem('mysticdex_accepted_emails', JSON.stringify(acceptedEmailIds));
+        
+        renderEmails($('#search-emails').val());
+        renderTracker();
+    });
+
+    // Remove single email from tracker via trash button
+    $(document).on('click', '.remove-tracker-btn', function(e) {
+        e.stopPropagation();
+        const emailId = parseInt($(this).data('email-id'), 10);
+        const idx = acceptedEmailIds.indexOf(emailId);
+        if (idx !== -1) {
+            acceptedEmailIds.splice(idx, 1);
+            localStorage.setItem('mysticdex_accepted_emails', JSON.stringify(acceptedEmailIds));
+            
+            renderTracker();
+            renderEmails($('#search-emails').val());
+        }
+    });
+
+    // Reset all emails tracked
+    $(document).on('click', '#reset-tracker-btn', function(e) {
+        e.stopPropagation();
+        if (acceptedEmailIds.length === 0) return;
+        if (confirm("Are you sure you want to reset all email tracker statuses back to pending?")) {
+            acceptedEmailIds = [];
+            localStorage.setItem('mysticdex_accepted_emails', JSON.stringify(acceptedEmailIds));
+            
+            renderTracker();
+            renderEmails($('#search-emails').val());
+        }
     });
 
 });
