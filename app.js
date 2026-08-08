@@ -57,6 +57,7 @@ $(document).ready(function() {
                 renderWalkthroughs();
                 renderEmails();
                 renderTracker();
+                initGameTracker();
             })
             .catch(error => {
                 console.error("SQLite initialization error:", error);
@@ -139,7 +140,14 @@ $(document).ready(function() {
         const allActive = activeRouteFilter === null ? 'active' : '';
         $chipsList.append(`<button class="route-chip ${allActive}" data-route="all">All Stories</button>`);
 
-        const dbRoutes = queryDB("SELECT DISTINCT route FROM chatrooms").map(r => r.route);
+        const dbRoutes = queryDB(`
+            SELECT DISTINCT 
+                   COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) AS route
+            FROM chatrooms c
+            LEFT JOIN routes r ON c.route_id = r.id
+            LEFT JOIN story_modes s ON c.story_mode_id = s.id
+        `).map(r => r.route);
+
         dbRoutes.sort((a, b) => {
             const idxA = routeOrder.indexOf(a);
             const idxB = routeOrder.indexOf(b);
@@ -179,7 +187,14 @@ $(document).ready(function() {
             "Ray Route": { desc: "Days 5-11. Save Saeran from his darkness.", type: "character-route" }
         };
 
-        const dbRoutes = queryDB("SELECT DISTINCT route FROM chatrooms").map(r => r.route);
+        const dbRoutes = queryDB(`
+            SELECT DISTINCT 
+                   COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) AS route
+            FROM chatrooms c
+            LEFT JOIN routes r ON c.route_id = r.id
+            LEFT JOIN story_modes s ON c.story_mode_id = s.id
+        `).map(r => r.route);
+
         dbRoutes.sort((a, b) => {
             const idxA = routeOrder.indexOf(a);
             const idxB = routeOrder.indexOf(b);
@@ -217,8 +232,12 @@ $(document).ready(function() {
         $list.empty();
 
         let sql = `
-            SELECT DISTINCT c.id, c.route, c.day, c.title, c.time
+            SELECT DISTINCT c.id, 
+                   COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) AS route, 
+                   c.day, c.title, c.time
             FROM chatrooms c
+            LEFT JOIN routes r ON c.route_id = r.id
+            LEFT JOIN story_modes s ON c.story_mode_id = s.id
         `;
         let params = {};
         let whereClauses = [];
@@ -231,13 +250,34 @@ $(document).ready(function() {
         }
 
         if (activeRouteFilter) {
-            whereClauses.push(`c.route = :route`);
-            params[':route'] = activeRouteFilter;
+            if (activeRouteFilter === 'DAY 1') {
+                whereClauses.push(`c.story_mode_id = 1`);
+            } else if (activeRouteFilter === 'Casual Story') {
+                whereClauses.push(`c.story_mode_id = 2 AND c.route_id IS NULL`);
+            } else if (activeRouteFilter === 'Deep Story') {
+                whereClauses.push(`c.story_mode_id = 3 AND c.route_id IS NULL`);
+            } else if (activeRouteFilter === 'Another Story') {
+                whereClauses.push(`c.story_mode_id = 4 AND c.route_id IS NULL`);
+            } else {
+                // Character Route (e.g. "Zen Route")
+                const charName = activeRouteFilter.replace(' Route', '');
+                const routeRows = queryDB("SELECT id, story_mode_id FROM routes WHERE name = :name", { ':name': charName });
+                if (routeRows.length > 0) {
+                    const rId = routeRows[0].id;
+                    const smId = routeRows[0].story_mode_id;
+                    // Zen route progression query: Common Day 1 OR (Casual Common days AND route_id is NULL) OR Zen Route specific days
+                    whereClauses.push(`(c.story_mode_id = 1 OR (c.story_mode_id = :smId AND c.route_id IS NULL) OR c.route_id = :rId)`);
+                    params[':smId'] = smId;
+                    params[':rId'] = rId;
+                } else {
+                    whereClauses.push(`1 = 0`);
+                }
+            }
         }
 
         // Apply Search query filter if typed
         if (searchQuery) {
-            whereClauses.push(`(c.title LIKE :search OR c.route LIKE :search)`);
+            whereClauses.push(`(c.title LIKE :search OR COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) LIKE :search)`);
             params[':search'] = `%${searchQuery}%`;
         }
 
@@ -408,13 +448,15 @@ $(document).ready(function() {
                 e.answer_1, 
                 e.answer_2, 
                 e.answer_3,
-                c.route AS chatroom_route,
+                COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) AS chatroom_route,
                 c.day AS chatroom_day,
                 c.title AS chatroom_title,
                 c.time AS chatroom_time
             FROM emails e
             LEFT JOIN email_chatroom ec ON e.email_id = ec.email_id
             LEFT JOIN chatrooms c ON ec.chatroom_id = c.id
+            LEFT JOIN routes r ON c.route_id = r.id
+            LEFT JOIN story_modes s ON c.story_mode_id = s.id
         `;
         let params = {};
 
@@ -423,14 +465,7 @@ $(document).ready(function() {
                 WHERE e.email_id IN (
                     SELECT DISTINCT e2.email_id
                     FROM emails e2
-                    LEFT JOIN email_chatroom ec2 ON e2.email_id = ec2.email_id
-                    LEFT JOIN chatrooms c2 ON ec2.chatroom_id = c2.id
-                    WHERE e2.sender LIKE :search 
-                       OR e2.answer_1 LIKE :search 
-                       OR e2.answer_2 LIKE :search 
-                       OR e2.answer_3 LIKE :search
-                       OR c2.title LIKE :search
-                       OR c2.route LIKE :search
+                    WHERE e2.sender LIKE :search
                 )
             `;
             params[':search'] = `%${searchQuery}%`;
@@ -615,13 +650,15 @@ $(document).ready(function() {
                 e.answer_1, 
                 e.answer_2, 
                 e.answer_3,
-                c.route AS chatroom_route,
+                COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) AS chatroom_route,
                 c.day AS chatroom_day,
                 c.title AS chatroom_title,
                 c.time AS chatroom_time
             FROM emails e
             LEFT JOIN email_chatroom ec ON e.email_id = ec.email_id
             LEFT JOIN chatrooms c ON ec.chatroom_id = c.id
+            LEFT JOIN routes r ON c.route_id = r.id
+            LEFT JOIN story_modes s ON c.story_mode_id = s.id
             WHERE e.email_id IN (${acceptedEmailIds.join(',')})
         `;
 
@@ -769,6 +806,306 @@ $(document).ready(function() {
     $(document).on('click', '.tracker-card-item', function() {
         $(this).toggleClass('expanded');
         $(this).find('.tracker-details').slideToggle(200);
+    });
+
+    // --- REAL-TIME GAME TRACKER MODULE ---
+    let showPastChatrooms = false;
+
+    // Load Game Tracker config
+    function initGameTracker() {
+        const configStr = localStorage.getItem('mysticdex_tracker_config');
+        if (configStr) {
+            try {
+                const config = JSON.parse(configStr);
+                $('#tracker-start-date').val(config.startDate);
+                $('#tracker-start-time').val(config.startTime);
+                $('#tracker-route-select').val(config.route);
+                renderLiveSchedule(config);
+            } catch (e) {
+                console.error("Error parsing tracker config:", e);
+                showGameTrackerConfig();
+            }
+        } else {
+            showGameTrackerConfig();
+        }
+    }
+
+    function showGameTrackerConfig() {
+        $('#game-tracker-config').show();
+        $('#live-schedule-card').hide();
+    }
+
+    // Render live progression schedule
+    function renderLiveSchedule(config) {
+        $('#game-tracker-config').hide();
+        $('#live-schedule-card').css('display', 'flex');
+
+        const now = new Date();
+        const startDayStr = `${config.startDate}T${config.startTime}`;
+        const startDateTime = new Date(startDayStr);
+
+        // Calendar Day Calculations (Midnight-to-Midnight)
+        const startDateMidnight = new Date(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate());
+        const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const diffTime = todayMidnight - startDateMidnight;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const currentGameDay = diffDays + 1; // Day 1-indexed
+
+        $('#live-route-badge').text(`${config.route} Route`);
+
+        const $list = $('#live-chatrooms-list');
+        $list.empty();
+
+        if (currentGameDay < 1) {
+            $('#live-day-badge').text("Upcoming");
+            $list.append(`
+                <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85rem;">
+                    Game starts on ${config.startDate} at ${config.startTime}.
+                </div>
+            `);
+            return;
+        }
+
+        if (currentGameDay > 11) {
+            $('#live-day-badge').text("Route Finished");
+            $list.append(`
+                <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85rem;">
+                    Your route completed on Day 11. Edit start to track a new progression!
+                </div>
+            `);
+            return;
+        }
+
+        $('#live-day-badge').text(`Day ${currentGameDay}`);
+
+        // Query database to get route_id and story_mode_id
+        const routeRows = queryDB("SELECT id, story_mode_id FROM routes WHERE name = :name", { ':name': config.route });
+        if (routeRows.length === 0) {
+            $list.append(`<div style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px;">Selected route not found in database.</div>`);
+            return;
+        }
+
+        const rId = routeRows[0].id;
+        const smId = routeRows[0].story_mode_id;
+
+        // Query chatrooms for currentDayNum in this progression:
+        // Common Day 1, or Story Mode common days, or Character Route specific days.
+        const chatrooms = queryDB(`
+            SELECT c.id, c.day, c.title, c.time,
+                   COALESCE(r.name || ' Route', CASE WHEN s.name = 'Common' THEN 'DAY 1' ELSE s.name END) AS route
+            FROM chatrooms c
+            LEFT JOIN routes r ON c.route_id = r.id
+            LEFT JOIN story_modes s ON c.story_mode_id = s.id
+            WHERE c.day = :day
+              AND (c.story_mode_id = 1 OR (c.story_mode_id = :smId AND c.route_id IS NULL) OR c.route_id = :rId)
+            ORDER BY c.time ASC;
+        `, { ':day': currentGameDay, ':smId': smId, ':rId': rId });
+
+        if (chatrooms.length === 0) {
+            $list.append(`<div style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px;">No scheduled chatrooms found for today.</div>`);
+            return;
+        }
+
+        // Tag chatrooms as Active, Past, or Upcoming
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const todayDateStr = `${yyyy}-${mm}-${dd}`;
+
+        // Find the index of the active chatroom
+        let activeIdx = -1;
+        
+        const parsedChats = chatrooms.map((room, idx) => {
+            const chatTimeStr = `${todayDateStr}T${room.time}`;
+            const chatDateTime = new Date(chatTimeStr);
+            const passed = chatDateTime <= now;
+
+            let isMissedOnDay1 = false;
+            if (currentGameDay === 1) {
+                const startHourMinStr = config.startTime; // "HH:MM"
+                if (room.time < startHourMinStr) {
+                    isMissedOnDay1 = true;
+                }
+            }
+
+            return {
+                ...room,
+                chatDateTime,
+                passed,
+                isMissedOnDay1
+            };
+        });
+
+        // Determine active: last one that has passed and was not missed on Day 1
+        for (let i = parsedChats.length - 1; i >= 0; i--) {
+            if (parsedChats[i].passed && !parsedChats[i].isMissedOnDay1) {
+                activeIdx = i;
+                break;
+            }
+        }
+
+        parsedChats.forEach((room, idx) => {
+            let status = 'upcoming';
+            let badgeText = 'Upcoming';
+            
+            if (idx === activeIdx) {
+                status = 'active';
+                badgeText = 'Active';
+            } else if (idx < activeIdx || room.isMissedOnDay1) {
+                status = 'past';
+                badgeText = 'Past';
+            }
+
+            // Get dialogue/choices
+            const elements = queryDB(`
+                SELECT id, type, character_id, content, recommended_for_character_id 
+                FROM chats_and_choices 
+                WHERE chatroom_id = :roomId 
+                ORDER BY id ASC;
+            `, { ':roomId': room.id });
+
+            // Generate participants avatars html
+            const participants = queryDB(`
+                SELECT c.id, c.name, c.avatar 
+                FROM chatroom_participants cp 
+                JOIN characters c ON cp.character_id = c.id 
+                WHERE cp.chatroom_id = :roomId;
+            `, { ':roomId': room.id });
+
+            let avatarsHTML = '';
+            participants.forEach(p => {
+                if (p.id !== 'mc') {
+                    avatarsHTML += `<img src="${p.avatar}" title="${p.name}" alt="${p.name}" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border);" />`;
+                }
+            });
+
+            let chatHTML = '';
+            elements.filter(el => el.type === 'bubble').forEach(bubble => {
+                const charObj = participants.find(p => p.id === bubble.character_id) || { name: bubble.character_id, avatar: '' };
+                const isMC = bubble.character_id === 'mc';
+
+                if (isMC) {
+                    chatHTML += `
+                        <div class="chat-bubble-row mc" style="margin-bottom: 4px;">
+                            <div class="chat-bubble" style="padding: 8px 12px; font-size: 0.8rem; background-color: var(--bubble-mc); color: var(--bubble-mc-text); border-bottom-right-radius: 4px; max-width: 80%; border-radius: var(--radius-bubble); box-shadow: var(--shadow-sm); word-break: break-word;">
+                                ${bubble.content}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    chatHTML += `
+                        <div class="chat-bubble-row other" style="margin-bottom: 4px;">
+                            <div>
+                                <span class="chat-sender-name" style="font-size: 0.7rem; margin-bottom: 2px; font-weight: 600; color: var(--text-secondary); display: block;">${charObj.name}</span>
+                                <div class="chat-bubble" style="padding: 8px 12px; font-size: 0.8rem; background-color: var(--bubble-other); color: var(--bubble-other-text); border-top-left-radius: 4px; max-width: 80%; border-radius: var(--radius-bubble); box-shadow: var(--shadow-sm); word-break: break-word;">
+                                    ${bubble.content}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            let choicesHTML = '';
+            elements.filter(el => el.type === 'choice').forEach(choice => {
+                const benefitsChar = choice.recommended_for_character_id;
+                const recClass = benefitsChar ? 'recommended' : '';
+                
+                let recLabel = '';
+                if (benefitsChar) {
+                    const beneficiary = queryDB("SELECT name FROM characters WHERE id = :charId;", { ':charId': benefitsChar });
+                    if (beneficiary.length > 0) {
+                        recLabel = `<span class="choice-rec-tag" style="background-color: var(--success-border); color: white; font-size: 0.6rem; padding: 1px 4px; border-radius: 8px; font-weight: 600; float: right; text-transform: uppercase;">+${beneficiary[0].name}</span>`;
+                    }
+                }
+
+                choicesHTML += `
+                    <div class="choice-option ${recClass}" style="padding: 8px 10px; font-size: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-md); background-color: var(--bg-container); margin-bottom: 4px; cursor: pointer; transition: all 0.2s ease;">
+                        ${recLabel}
+                        ${choice.content}
+                    </div>
+                `;
+            });
+
+            const isPastHidden = (status === 'past' && !showPastChatrooms) ? 'display: none;' : '';
+
+            $list.append(`
+                <div class="live-chatroom ${status}" data-chat-id="${room.id}" style="${isPastHidden}">
+                    <div class="live-chatroom-header">
+                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                            <div class="live-chatroom-title">${room.time} - ${room.title}</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted);">${room.route}</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="display: flex; gap: 2px; align-items: center;">
+                                ${avatarsHTML}
+                            </div>
+                            <span class="status-badge ${status}">${badgeText}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="live-chatroom-details">
+                        <div class="chat-simulator-body" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; margin-top: 8px;">
+                            ${chatHTML || '<div style="font-size: 0.75rem; color: var(--text-muted); font-style: italic;">No dialogue preview available.</div>'}
+                        </div>
+                        <div class="choices-container" style="margin-top: 8px; gap: 6px; display: flex; flex-direction: column;">
+                            ${choicesHTML || '<div style="font-size: 0.75rem; color: var(--text-muted); font-style: italic;">No recommended choices guide needed.</div>'}
+                        </div>
+                    </div>
+                </div>
+            `);
+        });
+
+        // Update button text depending on showPastChatrooms state
+        if (showPastChatrooms) {
+            $('#toggle-past-chats-btn').text("Hide Past Chatrooms");
+        } else {
+            $('#toggle-past-chats-btn').text("Show Past Chatrooms");
+        }
+    }
+
+    // Save Game Tracker Config
+    $(document).on('click', '#save-tracker-config-btn', function() {
+        const startDate = $('#tracker-start-date').val();
+        const startTime = $('#tracker-start-time').val();
+        const route = $('#tracker-route-select').val();
+
+        if (!startDate || !startTime || route === 'none') {
+            alert("Please fill in start date, start time, and select a route.");
+            return;
+        }
+
+        const config = { startDate, startTime, route };
+        localStorage.setItem('mysticdex_tracker_config', JSON.stringify(config));
+        renderLiveSchedule(config);
+    });
+
+    // Edit Game Tracker Config
+    $(document).on('click', '#edit-tracker-config-btn', function(e) {
+        e.stopPropagation();
+        showGameTrackerConfig();
+    });
+
+    // Toggle Past Chatrooms
+    $(document).on('click', '#toggle-past-chats-btn', function(e) {
+        e.stopPropagation();
+        showPastChatrooms = !showPastChatrooms;
+        
+        const configStr = localStorage.getItem('mysticdex_tracker_config');
+        if (configStr) {
+            renderLiveSchedule(JSON.parse(configStr));
+        }
+    });
+
+    // Toggle Live Chatroom accordion details
+    $(document).on('click', '.live-chatroom', function() {
+        $(this).toggleClass('expanded');
+        $(this).find('.live-chatroom-details').slideToggle(200);
+    });
+
+    // Click handler for homepage quick cards
+    $(document).on('click', '.feature-card.tracker-card', function() {
+        $('.bottom-nav .nav-item[data-tab="tracker"]').trigger('click');
     });
 
 });

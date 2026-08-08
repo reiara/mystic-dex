@@ -55,7 +55,7 @@
                             </svg>
                         </div>
                         <h4 class="feature-card-title">Walkthroughs</h4>
-                        <p class="feature-card-desc">Interactive chat simulators with optimal choice highlights.</p>
+                        <p class="feature-card-desc">Schedules & choices</p>
                     </button>
 
                     <button class="feature-card email-card">
@@ -67,29 +67,80 @@
                             </svg>
                         </div>
                         <h4 class="feature-card-title">Email Guides</h4>
-                        <p class="feature-card-desc">Correct answers to secure party attendees successfully.</p>
+                        <p class="feature-card-desc">Guest answers</p>
+                    </button>
+
+                    <button class="feature-card tracker-card">
+                        <div class="feature-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" style="width: 20px; height: 20px;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
+                        </div>
+                        <h4 class="feature-card-title">Email Tracker</h4>
+                        <p class="feature-card-desc">Tracked guests</p>
                     </button>
                 </div>
 
-                <!-- Email Tracker Section -->
-                <div class="tracker-section" id="email-tracker-section">
-                    <div class="tracker-header"
-                        style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; margin-bottom: 12px;">
-                        <h3 class="section-title" style="margin: 0; display: flex; align-items: center; gap: 8px;">
-                            <svg style="width: 18px; height: 18px; stroke: var(--accent-pink); fill: none; stroke-width: 2;"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                            </svg>
-                            Email Tracker
-                        </h3>
-                        <button class="tracker-reset-btn" id="reset-tracker-btn"
-                            style="background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; font-weight: 600; text-decoration: underline; transition: color 0.2s;"
-                            onmouseover="this.style.color='var(--accent-pink)'"
-                            onmouseout="this.style.color='var(--text-muted)'">Reset All</button>
+                <!-- Real-time Game Progress Tracker Section -->
+                <div class="tracker-section" id="game-progress-section" style="margin-bottom: 24px;">
+                    <h3 class="section-title">
+                        <svg style="width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 2;" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        Real-time Game Tracker
+                    </h3>
+                    
+                    <!-- Config Form Card -->
+                    <div id="game-tracker-config" style="background-color: var(--bg-container); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px;">
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;">Set your start date & time to track active chatrooms:</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div>
+                                <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">START DATE</label>
+                                <input type="date" id="tracker-start-date" class="search-input" style="padding: 8px 12px; font-size: 0.8rem; margin: 0;" />
+                            </div>
+                            <div>
+                                <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">START TIME</label>
+                                <input type="time" id="tracker-start-time" class="search-input" style="padding: 8px 12px; font-size: 0.8rem; margin: 0;" />
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">SELECT GAME ROUTE</label>
+                            <select id="tracker-route-select" class="search-input" style="padding: 8px 12px; font-size: 0.8rem; margin: 0; appearance: auto;">
+                                <option value="none">-- Select Route --</option>
+                                <option value="Zen">Zen Route</option>
+                                <option value="Yoosung">Yoosung Route</option>
+                                <option value="Jaehee">Jaehee Route</option>
+                                <option value="Jumin">Jumin Route</option>
+                                <option value="707">707 Route</option>
+                                <option value="V">V Route</option>
+                                <option value="Ray">Ray Route</option>
+                            </select>
+                        </div>
+                        <button id="save-tracker-config-btn" style="background-color: var(--primary); color: white; border: none; padding: 10px; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                            Start Tracking
+                        </button>
                     </div>
-                    <div id="tracker-list" class="email-list" style="margin-bottom: 24px;">
-                        <!-- Loaded dynamically -->
+
+                    <!-- Live Progression Schedule Card -->
+                    <div id="live-schedule-card" style="display: none; background-color: var(--bg-container); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); flex-direction: column; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                            <div>
+                                <span id="live-day-badge" style="background-color: var(--primary); color: white; font-size: 0.75rem; padding: 3px 8px; border-radius: 10px; font-weight: 700;">Day 1</span>
+                                <span id="live-route-badge" style="margin-left: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary);">Zen Route</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <button id="toggle-past-chats-btn" style="background: none; border: none; color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; font-weight: 600; text-decoration: underline;">Show Past Chatrooms</button>
+                                <button id="edit-tracker-config-btn" style="background: none; border: none; color: var(--primary); font-size: 0.75rem; cursor: pointer; font-weight: 600; text-decoration: underline;">Edit Start</button>
+                            </div>
+                        </div>
+                        
+                        <!-- List of chatrooms -->
+                        <div id="live-chatrooms-list" style="display: flex; flex-direction: column; gap: 8px; max-height: 350px; overflow-y: auto; padding-right: 4px;">
+                            <!-- Dynamically loaded -->
+                        </div>
                     </div>
                 </div>
 
@@ -160,6 +211,30 @@
                 </div>
             </section>
 
+            <!-- TAB 4: EMAIL TRACKER -->
+            <section id="tab-tracker" class="tab-content">
+                <div class="tracker-section" id="email-tracker-section" style="margin-top: 10px;">
+                    <div class="tracker-header"
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <h3 class="section-title" style="margin: 0; display: flex; align-items: center; gap: 8px;">
+                            <svg style="width: 18px; height: 18px; stroke: var(--accent-pink); fill: none; stroke-width: 2;"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
+                            Email Tracker
+                        </h3>
+                        <button class="tracker-reset-btn" id="reset-tracker-btn"
+                            style="background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; font-weight: 600; text-decoration: underline; transition: color 0.2s;"
+                            onmouseover="this.style.color='var(--accent-pink)'"
+                            onmouseout="this.style.color='var(--text-muted)'">Reset All</button>
+                    </div>
+                    <div id="tracker-list" class="email-list" style="margin-bottom: 24px;">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+            </section>
+
         </main>
 
         <!-- Sticky Bottom Navigation Bar -->
@@ -184,6 +259,13 @@
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <span>Emails</span>
+            </button>
+            <button class="nav-item" data-tab="tracker" aria-label="Navigate to Email Tracker">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                <span>Tracker</span>
             </button>
         </nav>
 
