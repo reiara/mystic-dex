@@ -86,29 +86,41 @@
                 <!-- Real-time Game Progress Tracker Section -->
                 <div class="tracker-section" id="game-progress-section" style="margin-bottom: 24px;">
                     <h3 class="section-title">
-                        <svg style="width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 2;" viewBox="0 0 24 24">
+                        <svg style="width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 2;"
+                            viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10" />
                             <polyline points="12 6 12 12 16 14" />
                         </svg>
                         Real-time Game Tracker
                     </h3>
-                    
+
                     <!-- Config Form Card -->
-                    <div id="game-tracker-config" style="background-color: var(--bg-container); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px;">
-                        <div style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;">Set your start date & time to track active chatrooms:</div>
+                    <div id="game-tracker-config"
+                        style="background-color: var(--bg-container); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px;">
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;">Set your start
+                            date & time to track active chatrooms:</div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                             <div>
-                                <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">START DATE</label>
-                                <input type="date" id="tracker-start-date" class="search-input" style="padding: 8px 12px; font-size: 0.8rem; margin: 0;" />
+                                <label
+                                    style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">START
+                                    DATE</label>
+                                <input type="date" id="tracker-start-date" class="search-input"
+                                    style="padding: 8px 12px; font-size: 0.8rem; margin: 0;" />
                             </div>
                             <div>
-                                <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">START TIME</label>
-                                <input type="time" id="tracker-start-time" class="search-input" style="padding: 8px 12px; font-size: 0.8rem; margin: 0;" />
+                                <label
+                                    style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">START
+                                    TIME</label>
+                                <input type="time" id="tracker-start-time" class="search-input"
+                                    style="padding: 8px 12px; font-size: 0.8rem; margin: 0;" />
                             </div>
                         </div>
                         <div>
-                            <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">SELECT GAME ROUTE</label>
-                            <select id="tracker-route-select" class="search-input" style="padding: 8px 12px; font-size: 0.8rem; margin: 0; appearance: auto;">
+                            <label
+                                style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px;">SELECT
+                                GAME ROUTE</label>
+                            <select id="tracker-route-select" class="search-input"
+                                style="padding: 8px 12px; font-size: 0.8rem; margin: 0; appearance: auto;">
                                 <option value="none">-- Select Route --</option>
                                 <option value="Zen">Zen Route</option>
                                 <option value="Yoosung">Yoosung Route</option>
@@ -119,48 +131,43 @@
                                 <option value="Ray">Ray Route</option>
                             </select>
                         </div>
-                        <button id="save-tracker-config-btn" style="background-color: var(--primary); color: white; border: none; padding: 10px; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+                        <button id="save-tracker-config-btn"
+                            style="background-color: var(--primary); color: white; border: none; padding: 10px; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
                             Start Tracking
                         </button>
                     </div>
 
                     <!-- Live Progression Schedule Card -->
-                    <div id="live-schedule-card" style="display: none; background-color: var(--bg-container); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); flex-direction: column; gap: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                    <div id="live-schedule-card"
+                        style="display: none; background-color: var(--bg-container); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; box-shadow: var(--shadow-sm); flex-direction: column; gap: 12px;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
                             <div>
-                                <span id="live-day-badge" style="background-color: var(--primary); color: white; font-size: 0.75rem; padding: 3px 8px; border-radius: 10px; font-weight: 700;">Day 1</span>
-                                <span id="live-route-badge" style="margin-left: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary);">Zen Route</span>
+                                <span id="live-day-badge"
+                                    style="background-color: var(--primary); color: white; font-size: 0.75rem; padding: 3px 8px; border-radius: 10px; font-weight: 700;">Day
+                                    1</span>
+                                <span id="live-route-badge"
+                                    style="margin-left: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary);">Zen
+                                    Route</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <button id="toggle-past-chats-btn" style="background: none; border: none; color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; font-weight: 600; text-decoration: underline;">Show Past Chatrooms</button>
-                                <button id="edit-tracker-config-btn" style="background: none; border: none; color: var(--primary); font-size: 0.75rem; cursor: pointer; font-weight: 600; text-decoration: underline;">Edit Start</button>
+                                <button id="toggle-past-chats-btn"
+                                    style="background: none; border: none; color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; font-weight: 600; text-decoration: underline;">Show
+                                    Past Chatrooms</button>
+                                <button id="edit-tracker-config-btn"
+                                    style="background: none; border: none; color: var(--primary); font-size: 0.75rem; cursor: pointer; font-weight: 600; text-decoration: underline;">Edit
+                                    Start</button>
                             </div>
                         </div>
-                        
+
                         <!-- List of chatrooms -->
-                        <div id="live-chatrooms-list" style="display: flex; flex-direction: column; gap: 8px; max-height: 350px; overflow-y: auto; padding-right: 4px;">
+                        <div id="live-chatrooms-list"
+                            style="display: flex; flex-direction: column; gap: 8px; max-height: 350px; overflow-y: auto; padding-right: 4px;">
                             <!-- Dynamically loaded -->
                         </div>
                     </div>
                 </div>
 
-                <!-- RFA Members Section -->
-                <h3 class="section-title">
-                    <svg style="width: 18px; height: 18px; stroke: var(--accent-pink); fill: none; stroke-width: 2;"
-                        viewBox="0 0 24 24">
-                        <path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" />
-                    </svg>
-                    RFA Members
-                </h3>
-
-                <!-- Quick Filter list on Home Screen -->
-                <div class="character-list" id="char-chips-list">
-                    <!-- Loaded dynamically via jQuery -->
-                </div>
-
-                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
-                    Select a member to filter their specific walkthrough chatroom schedules.
-                </p>
             </section>
 
             <!-- TAB 2: WALKTHROUGH -->
@@ -176,6 +183,7 @@
                         </svg>
                         <input type="text" class="search-input" id="search-walkthrough"
                             placeholder="Search walkthrough chatrooms...">
+                        <button class="clear-search-btn" id="clear-walkthrough-search" type="button" style="display: none;">&times;</button>
                     </div>
 
                     <!-- Route Filter Chips list -->
@@ -203,6 +211,7 @@
                     </svg>
                     <input type="text" class="search-input" id="search-emails"
                         placeholder="Search email guest or answer keys...">
+                    <button class="clear-search-btn" id="clear-emails-search" type="button" style="display: none;">&times;</button>
                 </div>
 
                 <!-- Emails Content List -->

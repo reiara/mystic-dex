@@ -619,12 +619,36 @@ $(document).ready(function() {
 
     // Walkthrough input search box handler
     $('#search-walkthrough').on('input', function() {
-        renderWalkthroughs($(this).val());
+        const val = $(this).val();
+        if (val.trim() !== '') {
+            $('#clear-walkthrough-search').show();
+        } else {
+            $('#clear-walkthrough-search').hide();
+        }
+        renderWalkthroughs(val);
+    });
+
+    $('#clear-walkthrough-search').on('click', function() {
+        $('#search-walkthrough').val('');
+        $(this).hide();
+        renderWalkthroughs('');
     });
 
     // Email input search box handler
     $('#search-emails').on('input', function() {
-        renderEmails($(this).val());
+        const val = $(this).val();
+        if (val.trim() !== '') {
+            $('#clear-emails-search').show();
+        } else {
+            $('#clear-emails-search').hide();
+        }
+        renderEmails(val);
+    });
+
+    $('#clear-emails-search').on('click', function() {
+        $('#search-emails').val('');
+        $(this).hide();
+        renderEmails('');
     });
 
     // Render tracker function
