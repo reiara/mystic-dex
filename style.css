@@ -124,6 +124,7 @@ body {
     font-weight: 700;
     background: linear-gradient(135deg, var(--primary), var(--accent-pink));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
 }
@@ -893,4 +894,8 @@ body {
 
 .tracker-card-item {
     border-left: 4px solid var(--accent-pink) !important;
+}
+
+.tracker-card-item.expanded .tracker-arrow {
+    transform: rotate(90deg);
 }

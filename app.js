@@ -677,38 +677,45 @@ $(document).ready(function() {
             }
 
             $list.append(`
-                <div class="email-card-item tracker-card-item" data-email-id="${email.email_id}">
-                    <div class="email-header-row" style="margin-bottom: 6px;">
+                <div class="email-card-item tracker-card-item" data-email-id="${email.email_id}" style="cursor: pointer; transition: all 0.2s ease;">
+                    <div class="email-header-row" style="margin-bottom: 0;">
                         <div class="email-sender">
                             <span>${email.sender}</span>
                         </div>
-                        <button class="remove-tracker-btn" data-email-id="${email.email_id}" title="Remove from Tracker" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='var(--accent-pink)'" onmouseout="this.style.color='var(--text-muted)'">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 16px; height: 16px;">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button class="remove-tracker-btn" data-email-id="${email.email_id}" title="Remove from Tracker" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='var(--accent-pink)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 16px; height: 16px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                            <svg class="tracker-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease; color: var(--text-muted);">
+                                <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
-                        </button>
+                        </div>
                     </div>
                     
-                    <div class="email-location" style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px;">
-                        <span style="font-weight: 600; color: var(--accent-pink);">Found in:</span> ${locationsHTML}
-                    </div>
-                    
-                    <div class="email-answers" style="padding: 8px; gap: 4px;">
-                        ${email.answer_1 && email.answer_1.trim() ? `
-                        <div class="email-answer-step" style="font-size: 0.75rem;">
-                            <span class="step-num">#1</span>
-                            <span>${email.answer_1}</span>
-                        </div>` : ''}
-                        ${email.answer_2 && email.answer_2.trim() ? `
-                        <div class="email-answer-step" style="font-size: 0.75rem;">
-                            <span class="step-num">#2</span>
-                            <span>${email.answer_2}</span>
-                        </div>` : ''}
-                        ${email.answer_3 && email.answer_3.trim() ? `
-                        <div class="email-answer-step" style="font-size: 0.75rem;">
-                            <span class="step-num">#3</span>
-                            <span>${email.answer_3}</span>
-                        </div>` : ''}
+                    <div class="tracker-details" style="display: none; margin-top: 10px;">
+                        <div class="email-location" style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px;">
+                            <span style="font-weight: 600; color: var(--accent-pink);">Found in:</span> ${locationsHTML}
+                        </div>
+                        
+                        <div class="email-answers" style="padding: 8px; gap: 4px;">
+                            ${email.answer_1 && email.answer_1.trim() ? `
+                            <div class="email-answer-step" style="font-size: 0.75rem;">
+                                <span class="step-num">#1</span>
+                                <span>${email.answer_1}</span>
+                            </div>` : ''}
+                            ${email.answer_2 && email.answer_2.trim() ? `
+                            <div class="email-answer-step" style="font-size: 0.75rem;">
+                                <span class="step-num">#2</span>
+                                <span>${email.answer_2}</span>
+                            </div>` : ''}
+                            ${email.answer_3 && email.answer_3.trim() ? `
+                            <div class="email-answer-step" style="font-size: 0.75rem;">
+                                <span class="step-num">#3</span>
+                                <span>${email.answer_3}</span>
+                            </div>` : ''}
+                        </div>
                     </div>
                 </div>
             `);
@@ -756,6 +763,12 @@ $(document).ready(function() {
             renderTracker();
             renderEmails($('#search-emails').val());
         }
+    });
+
+    // Toggle Email tracker card accordion
+    $(document).on('click', '.tracker-card-item', function() {
+        $(this).toggleClass('expanded');
+        $(this).find('.tracker-details').slideToggle(200);
     });
 
 });
